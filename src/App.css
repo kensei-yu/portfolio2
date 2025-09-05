@@ -1,3 +1,131 @@
+.code-rain-canvas {
+  position: fixed; /* 画面に固定 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* 他のコンテンツの下に配置 */
+}
+
+/* Nixie Clock Loaderのスタイル */
+.nixie-loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  z-index: 100;
+}
+
+.nixie-display-wrapper {
+  perspective: 1000px;
+}
+
+.nixie-display {
+  display: flex;
+  gap: 10px;
+  transform: rotateX(10deg);
+}
+
+.nixie-tube {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px; /* サイズを小さく調整 */
+  height: 90px;
+  background-color: #0d0d0d;
+  border: 2px solid #282c34;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.nixie-digits {
+  color: #ff8c00;
+  font-family: 'monospace', sans-serif;
+  font-size: 3rem; /* サイズを小さく調整 */
+  text-shadow: 0 0 4px #ff8c00, 0 0 8px #ff8c00, 0 0 16px rgba(255, 140, 0, 0.5);
+  animation: nixie-flicker 0.1s infinite alternate;
+}
+
+.complete-text {
+  color: #007bff;
+  font-family: 'monospace', sans-serif;
+  font-size: 2rem;
+  margin-top: 3rem;
+  text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+@keyframes nixie-flicker {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+/* Nixie Clock Loaderのスタイル */
+.nixie-loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  z-index: 100;
+}
+
+.nixie-display {
+  display: flex;
+  gap: 10px;
+}
+
+.nixie-tube {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 90px;
+  background-color: #0d0d0d;
+  border: 2px solid #282c34;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.nixie-digits {
+  color: #ff8c00;
+  font-family: 'monospace', sans-serif;
+  font-size: 3rem;
+  text-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00, 0 0 20px rgba(255, 140, 0, 0.5);
+}
+
+.complete-text {
+  color: #007bff;
+  font-family: 'monospace', sans-serif;
+  font-size: 2rem;
+  margin-top: 3rem;
+  text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 20px rgba(0, 123, 255, 0.5);
+  animation: complete-glow 1.5s infinite alternate;
+}
+
+@keyframes complete-glow {
+  from {
+    text-shadow: 0 0 5px #007bff, 0 0 10px #007bff;
+  }
+  to {
+    text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff;
+  }
+}
 /* 全体共通のスタイル（ダークモード） */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,8 +133,14 @@ body {
     sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #121212; /* ダークな背景色 */
   color: #e0e0e0; /* 明るい文字色 */
+  background-color: transparent;
+}
+
+/* ヘッダーや他のコンテンツがアニメーションの上に表示されるように、z-indexを設定する */
+.main-nav, .home-container, .about-container, .works-container, .contact-container {
+  position: relative; /* z-indexが機能するために必要 */
+  z-index: 1; /* アニメーションより手前に */
 }
 
 /* ヘッダー/ナビゲーション */
@@ -97,8 +231,9 @@ body {
 }
 
 .about-photo {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+  max-width: 100%;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -113,6 +248,7 @@ body {
 
 .about-text p {
   line-height: 1.6;
+   white-space: pre-wrap; /* これを追加 */
 }
 
 /* Worksページ */
@@ -159,4 +295,101 @@ body {
   padding: 0 1rem 1rem;
   margin: 0;
   color: #b0b0b0;
+}
+
+/* Contactページ */
+.contact-container {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(30, 30, 30, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.contact-container h2 {
+  color: #007bff;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-info {
+  margin-bottom: 3rem;
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+}
+
+.contact-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #b0b0b0;
+}
+
+.form-group input,
+.form-group textarea {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #e0e0e0;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
 }

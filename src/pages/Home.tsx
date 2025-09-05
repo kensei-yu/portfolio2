@@ -1,9 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import logo from '../logo.svg';
-import newImage from '../100.png'; // 新しい画像ファイルをインポート
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import newImage from '../100.png';
+import CodeRain from '../components/CodeRain';
+import NixieClockLoader from '../components/NixieClockLoader';
 
-// アニメーションのバリアントを定義
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -20,27 +20,28 @@ const itemVariants = {
 };
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <motion.div
-      className="home-container"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="main-work">
-        <motion.img
-          // インポートした変数を使用
-          src="./FyIjYYoaIAUYL7w.jpeg"
-          alt="Main work showcase"
-          className="main-image"
-          variants={itemVariants}
-        />
-        <div className="main-info">
-          <motion.h1 variants={itemVariants}>Kensei Yu</motion.h1>
-          <motion.p variants={itemVariants}>Engineer</motion.p>
-        </div>
-      </div>
-    </motion.div>
+    <>
+      <CodeRain />
+      <AnimatePresence>
+        {isLoading && <NixieClockLoader onLoadComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+      {!isLoading && (
+        <motion.div
+          className="home-container"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+            <div className="main-info">
+              <motion.h1 variants={itemVariants}>Kensei Yu</motion.h1>
+              <motion.p variants={itemVariants}>Frontend Engineer</motion.p>
+          </div>
+        </motion.div>
+      )}
+    </>
   );
 }
 

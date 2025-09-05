@@ -1,10 +1,33 @@
 import React from 'react';
 
-// You can create a ProjectCard component later to make this cleaner
 const projects = [
-  { id: 1, title: 'Project Alpha', description: 'Web development using React and Tailwind CSS.', imageUrl: '/path/to/image1.jpg' },
-  { id: 2, title: 'Project Beta', description: 'A mobile-first application built with Next.js and Styled Components.', imageUrl: '/path/to/image2.jpg' },
-  { id: 3, title: 'Project Gamma', description: 'A personal blog site with a custom content management system.', imageUrl: '/path/to/image3.jpg' },
+  { 
+    id: 1, 
+    title: '海の家サイト', 
+    description: '実家の家業に関するサイトを作成、運用しています。', 
+    imageUrl: './1000.png',
+    url: 'https://crystal-syoya.com' // 最初の作品のURL
+  },
+  { 
+    id: 2, 
+    title: 'シフト管理アプリ', 
+    description: 'シフトを簡単に管理できるアプリを開発しました。test@test.com パスワードexampleでログインできます。', 
+    imageUrl: './1100.png',
+    url: 'https://sea-shift.web.app' // 2番目の作品のURL
+  },
+  { 
+    id: 3, 
+    title: 'バンドマン向けアプリ', 
+    description: 'バンドマンに向けたマッチングアプリを開発中です。githubでコードを公開しています。', 
+    imageUrl: './batch_setting.png',
+    url: 'https://github.com/kensei-yu/batch' // 2番目の作品のURL
+  },
+    { 
+    id: 4, 
+    title: '手芸', 
+    description: 'ケロロが好きなので作りました。', 
+    imageUrl: './IMG_0684.png',
+  },
 ];
 
 function Works() {
@@ -14,9 +37,12 @@ function Works() {
       <div className="project-grid">
         {projects.map((project) => (
           <div key={project.id} className="project-card">
-            <img src={project.imageUrl} alt={project.title} className="project-image" />
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
+            {/* 動的にURLを適用 */}
+            <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <img src={project.imageUrl} alt={project.title} className="project-image" />
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+            </a>
           </div>
         ))}
       </div>
