@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import React from 'react';
 
 const projects = [
@@ -22,8 +23,15 @@ const projects = [
     imageUrl: './batch_setting.png',
     url: 'https://github.com/kensei-yu/batch' // 2番目の作品のURL
   },
-    { 
+     { 
     id: 4, 
+    title: '過去のポートフォリオ', 
+    description: '2年前に作成したポートフォリオサイトです。', 
+    imageUrl: './1111.png',
+    url: 'https://kensei-yu.github.io/portfolio_2023/index.html'
+  },
+    { 
+    id: 5, 
     title: '手芸', 
     description: 'ケロロが好きなので作りました。', 
     imageUrl: './IMG_0684.png',

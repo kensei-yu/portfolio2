@@ -68,64 +68,6 @@
   100% { opacity: 0.8; }
 }
 
-/* Nixie Clock Loaderのスタイル */
-.nixie-loader-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #121212;
-  z-index: 100;
-}
-
-.nixie-display {
-  display: flex;
-  gap: 10px;
-}
-
-.nixie-tube {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 90px;
-  background-color: #0d0d0d;
-  border: 2px solid #282c34;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
-
-.nixie-digits {
-  color: #ff8c00;
-  font-family: 'monospace', sans-serif;
-  font-size: 3rem;
-  text-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00, 0 0 20px rgba(255, 140, 0, 0.5);
-}
-
-.complete-text {
-  color: #007bff;
-  font-family: 'monospace', sans-serif;
-  font-size: 2rem;
-  margin-top: 3rem;
-  text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 20px rgba(0, 123, 255, 0.5);
-  animation: complete-glow 1.5s infinite alternate;
-}
-
-@keyframes complete-glow {
-  from {
-    text-shadow: 0 0 5px #007bff, 0 0 10px #007bff;
-  }
-  to {
-    text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff;
-  }
-}
 /* 全体共通のスタイル（ダークモード） */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -134,7 +76,7 @@ body {
   margin: 0;
   padding: 0;
   color: #e0e0e0; /* 明るい文字色 */
-  background-color: transparent;
+  background-color: #121212; /* ダークな背景色 */
 }
 
 /* ヘッダーや他のコンテンツがアニメーションの上に表示されるように、z-indexを設定する */
